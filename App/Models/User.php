@@ -11,4 +11,10 @@ class User extends Model
     public $name;
     public $mobile;
     public $password;
+    public $is_store;
+
+    public function store()
+    {
+        return $this->hasMany(Store::class, "user_id");
+    }
 }

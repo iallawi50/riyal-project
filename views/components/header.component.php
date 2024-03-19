@@ -23,7 +23,7 @@ if (isset($_SESSION["user"]) && !User::find($_SESSION["user"]->id)) {
 </head>
 
 <body dir=rtl>
-  <nav class="navbar bg-success navbar-expand-lg" data-bs-theme="dark">
+  <nav class="navbar navbar-expand-lg text-white navbar-dark" style="background-color: #223673;">
     <div class="container">
       <a class="navbar-brand" href="<?= home() ?>"><?= app_name("ريال") ?></a>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">

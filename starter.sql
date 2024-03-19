@@ -15,7 +15,7 @@ CREATE TABLE `banks` (
   PRIMARY KEY (`id`)
 ) ENGINE = InnoDB;
 
-CREATE TABLE `transactions` (`id` INT NOT NULL AUTO_INCREMENT , `saller_id` INT NOT NULL , `buyer_id` INT NOT NULL , `amount` FLOAT NOT NULL , `status` INT NOT NULL , `bill_id` INT NOT NULL , `created_at` TIMESTAMP NOT NULL , PRIMARY KEY (`id`)) ENGINE = InnoDB;
+CREATE TABLE `transactions` (`id` INT NOT NULL AUTO_INCREMENT , `seller_id` INT NOT NULL , `buyer_id` INT NOT NULL , `invoice_number` INT NOT NULL, `amount` FLOAT NOT NULL , `status` INT NOT NULL , `bill_id` INT NOT NULL , `created_at` TIMESTAMP NOT NULL , PRIMARY KEY (`id`)) ENGINE = InnoDB;
 
 CREATE TABLE `cancelationreason` (`id` INT NOT NULL AUTO_INCREMENT , `transaction_id` INT NOT NULL , `reason` TEXT NOT NULL , `created_at` TIMESTAMP NOT NULL , PRIMARY KEY (`id`)) ENGINE = InnoDB;
 
@@ -23,12 +23,13 @@ CREATE TABLE `credit` (`id` INT NOT NULL AUTO_INCREMENT , `amount` FLOAT NOT NUL
 
 CREATE TABLE `storeinformation` (`id` INT NOT NULL AUTO_INCREMENT , `name` VARCHAR(255) NOT NULL , `link` TEXT NOT NULL , `user_id` INT NOT NULL , PRIMARY KEY (`id`)) ENGINE = InnoDB;
 
-CREATE TABLE `riyal`.`invoice` (
+CREATE TABLE `invoice` (
     `id` INT NOT NULL AUTO_INCREMENT,
     `seller_id` INT NOT NULL,
     `invoice_number` INT NOT NULL,
     `product_name` VARCHAR(255) NOT NULL,
     `product_price` INT NOT NULL,
     `buyer_mobile` VARCHAR(10) NOT NULL,
+    `created_at` TIMESTAMP NOT NULL,
     PRIMARY KEY (`id`)
 ) ENGINE = InnoDB;

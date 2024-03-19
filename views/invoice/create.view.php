@@ -45,7 +45,8 @@
             text-align: center;
         }
 
-        input {
+        input,
+        .store {
             width: 80%;
             padding: 8px;
             border: 1px solid #ddd;
@@ -90,13 +91,19 @@
 </head>
 
 <body dir=rtl>
-    <form action="process.php" method="get" id="invoice-form">
+    <form action="" method="post" id="invoice-form">
         <div class="invoice">
             <h1 class="invoice-header">فاتورة</h1>
             <div class="invoice-details">
-                <p>رقم الفاتورة: <span id="invoice-number"></span></p>
+                 <input hidden name="invoice" id="invoice-number"></input>
                 اسم المتجر
-                <input type="text" class="store">
+                <select type="text" class="store" name="store">
+                    <?php foreach ($stores as $store) : ?>
+
+                        <option value="<?= $store->id ?>"><?= $store->name ?></option>
+
+                    <?php endforeach ?>
+                </select>
             </div>
             <div class="invoice-summary">
                 <table id="product-table">
@@ -105,10 +112,9 @@
                         <th>السعر</th>
                     </tr>
                     <tr>
-                        <td><input type="text" name="product1" placeholder="اسم المنتج"></td>
-                        <td><input type="number" name="price1" placeholder="السعر" class="product-price"></td>
+                        <td><input type="text" name="product" placeholder="اسم المنتج"></td>
+                        <td><input type="number" name="price" placeholder="السعر" class="product-price"></td>
                     </tr>
-                    <!-- يمكنك إضافة صفوف إضافية هنا للمزيد من المنتجات -->
                 </table>
                 <p>اجمالي المبلغ: <span id="total-amount">0.00</span></p>
                 <p>الدفع عن طريق "ريال"</p>
@@ -116,7 +122,7 @@
             <div class="payment-section">
                 <div>
                     <p>رقم جوال العميل</p>
-                    <input type="text" name="" id="">
+                    <input type="text" name="mobile" id="">
                 </div>
             </div>
             <button class="payment-button" type="submit">ادفع</button>
@@ -128,7 +134,8 @@
         document.addEventListener('DOMContentLoaded', function() {
 
 
-            document.getElementById('invoice-number').textContent = Math.floor(Math.random() * 1000000);
+            document.getElementById('invoice-number').value = Math.floor(Math.random() * 1000000);
+
 
 
             const productPrices = document.querySelectorAll('.product-price');

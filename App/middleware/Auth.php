@@ -13,7 +13,8 @@ class Auth
             $user = new User;
             $user->id= $_SESSION["user"]->id;
             $user->name=$_SESSION["user"]->name;
-            $user->username=$_SESSION["user"]->username;
+            $user->mobile=$_SESSION["user"]->mobile;
+            $user->is_store=$_SESSION["user"]->is_store;
         } else {
             $user = new User;
             $user->id = null;
