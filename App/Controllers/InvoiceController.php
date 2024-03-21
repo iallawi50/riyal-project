@@ -12,7 +12,9 @@ class InvoiceController extends Controller
 
     public function index()
     {
-        return view("invoice/index");
+        return view("invoice/index", [
+            "invoices" => user()->invoices()
+        ]);
     }
 
 
@@ -25,11 +27,18 @@ class InvoiceController extends Controller
     public function store()
     {
         $invoice = Request::get("invoice");
-        $sallerID = Request::get("store");
+        $sellerID = Request::get("store");
         $product = Request::get("product");
         $price = Request::get("price");
         $mobile = Request::get("mobile");
 
-        Invoice::create()
+        Invoice::create([
+            "invoice_number" => $invoice,
+            "product_name" => $product,
+            "seller_id" => $sellerID,
+            "product_price" => $price,
+            "buyer_id" => $mobile,
+            "status" => 0,
+        ]);
     }
 }

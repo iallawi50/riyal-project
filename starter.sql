@@ -25,11 +25,12 @@ CREATE TABLE `storeinformation` (`id` INT NOT NULL AUTO_INCREMENT , `name` VARCH
 
 CREATE TABLE `invoice` (
     `id` INT NOT NULL AUTO_INCREMENT,
-    `seller_id` INT NOT NULL,
     `invoice_number` INT NOT NULL,
     `product_name` VARCHAR(255) NOT NULL,
     `product_price` INT NOT NULL,
-    `buyer_mobile` VARCHAR(10) NOT NULL,
+    `seller_id` INT NOT NULL,
+    `buyer_id` VARCHAR(10) NOT NULL,
+    `status` INT NOT NULL ,
     `created_at` TIMESTAMP NOT NULL,
     PRIMARY KEY (`id`)
 ) ENGINE = InnoDB;

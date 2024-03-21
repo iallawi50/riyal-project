@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\QueryBuilder;
 use Model;
 
 class User extends Model
@@ -16,5 +17,10 @@ class User extends Model
     public function store()
     {
         return $this->hasMany(Store::class, "user_id");
+    }
+
+    public function invoices()
+    {
+        return QueryBuilder::select("invoice", ["buyer_id", "=", $this->mobile], class: Invoice::class);
     }
 }
