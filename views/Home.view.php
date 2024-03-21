@@ -15,7 +15,7 @@
                     <a href="<?= home() ?>/store/create" class="col-5 mx-auto btn btn-custom">أضف بيانات المتجر</a>
 
                 <?php endif ?>
-                <a href="#" class="col-5 mx-auto  btn btn-custom">الطلبات</a>
+                <a href="/orders" class="col-5 mx-auto  btn btn-custom">الطلبات</a>
 
             <?php else : ?>
 

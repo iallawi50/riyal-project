@@ -28,6 +28,9 @@ Route::make()
     ->get("invoices", [InvoiceController::class, "index"])
     ->get("invoice/create", [InvoiceController::class, "create"])
     ->post("invoice/create", [InvoiceController::class, "store"])
+    ->get("invoice/checkout", [InvoiceController::class, "checkout"])
+    ->post("invoice/checkout", [InvoiceController::class, "completed"])
+    ->post("invoice/cancel", [InvoiceController::class, "cancel"])
 
 
     ->resolve(Request::uri(), Request::method());

@@ -10,6 +10,11 @@ use App\QueryBuilder;
 class InvoiceController extends Controller
 {
 
+    public function __construct()
+    {
+        $this->middleware("auth");
+    }
+
     public function index()
     {
         return view("invoice/index", [
@@ -40,5 +45,37 @@ class InvoiceController extends Controller
             "buyer_id" => $mobile,
             "status" => 0,
         ]);
+
+        return view("invoice/sent", [
+            "invoice" => $invoice
+        ]);
+    }
+
+
+    public function checkout()
+    {
+        return view("invoice/checkout");
+    }
+
+
+    public function completed()
+    {
+        Invoice::update(Request::get("id"), [
+            "status" => 1
+        ]);
+
+
+
+        return redirect("invoices");
+    }
+
+
+    public function cancel()
+    {
+        Invoice::update(Request::get("id"), [
+            "status" => 2
+        ]);
+
+        return redirect("invoices");
     }
 }

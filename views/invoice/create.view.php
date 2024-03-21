@@ -95,12 +95,12 @@
         <div class="invoice">
             <h1 class="invoice-header">فاتورة</h1>
             <div class="invoice-details">
-                 <input hidden name="invoice" id="invoice-number"></input>
+                <input hidden name="invoice" id="invoice-number"></input>
                 اسم المتجر
                 <select type="text" class="store" name="store">
                     <?php foreach ($stores as $store) : ?>
 
-                        <option value="<?= $store->id ?>"><?= $store->name ?></option>
+                        <option value="<?= $store->id ?>"><?= $store->store()[0]->name ?></option>
 
                     <?php endforeach ?>
                 </select>
