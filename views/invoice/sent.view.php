@@ -25,7 +25,7 @@ use App\Core\Request;
 <body>
 
     <div>
-        <h1>تم ارسال الطلب</h1>
+        <h1>تم ارسال الفاتورة</h1>
         <h3>رقم الطلب : <?= $invoice ?></h3>
     </div>
 

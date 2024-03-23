@@ -9,7 +9,7 @@ use App\Controllers\HomeController;
 use App\Controllers\InvoiceController;
 use App\Controllers\StoreController;
 use App\Controllers\TransactionController;
-
+use App\Models\Store;
 
 Route::make()
     ->get("", [HomeController::class, "index"])
@@ -21,8 +21,10 @@ Route::make()
     ->post("logout", [AuthController::class, "logout"], "auth")
 
     // Store
+    ->get("store/orders", [StoreController::class, "index"])
     ->get("store/create", [StoreController::class, "create"])
     ->post("store/create", [StoreController::class, "store"])
+    ->get("store/credit", [StoreController::class, "credit"])
 
     // Invoice
     ->get("invoices", [InvoiceController::class, "index"])
@@ -33,4 +35,8 @@ Route::make()
     ->post("invoice/cancel", [InvoiceController::class, "cancel"])
 
 
+    ->get("orders", [TransactionController::class, "index"])
+    ->get("orders/cancel", [TransactionController::class, "cancel"])
+    ->post("orders/cancel", [TransactionController::class, "cancelation"])
+    ->get("orders/complete", [TransactionController::class, "completed"])
     ->resolve(Request::uri(), Request::method());

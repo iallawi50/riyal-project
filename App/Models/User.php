@@ -13,6 +13,8 @@ class User extends Model
     public $mobile;
     public $password;
     public $is_store;
+    private $credit;
+    private $suspended;
 
     public function store()
     {
@@ -22,5 +24,31 @@ class User extends Model
     public function invoices()
     {
         return QueryBuilder::select("invoice", ["buyer_id", "=", $this->mobile], class: Invoice::class);
+    }
+
+    public function orders()
+    {
+        return $this->hasMany(Transaction::class, "buyer_id");
+    }
+
+    public function store_orders()
+    {
+        return $this->hasMany(Transaction::class, "seller_id");
+    }
+
+
+    public function credit()
+    {
+
+        foreach ($this->store_orders() as $order) {
+            if ($order->status == 1) {
+                $this->credit += $order->amount;
+            } else if($order->status == 0)
+            {
+                $this->suspended += $order->amount;
+            } else continue;
+        }
+
+        return [$this->credit, $this->suspended];
     }
 }

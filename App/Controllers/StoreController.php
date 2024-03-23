@@ -14,6 +14,11 @@ class StoreController extends Controller
         return $this->middleware("auth");
     }
 
+    public function index()
+    {
+        return view("store/orders");
+    }
+
     public function create()
     {
         return view("store/create");
@@ -33,5 +38,10 @@ class StoreController extends Controller
             ]);
         }
         redirect_home();
+    }
+
+    public function credit()
+    {
+        return view("store/credit");
     }
 }

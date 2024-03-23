@@ -2,7 +2,8 @@
 
 use App\App;
 use App\Middleware\Auth;
-
+use App\Models\Transaction;
+use Carbon\Carbon;
 
 function app_name($default = "Marten")
 {
@@ -15,7 +16,7 @@ function home()
 
 function asset($path = null)
 {
- 
+
     return $path ? home() . "/public/" . $path : home() . "/public/";
 }
 
@@ -67,4 +68,33 @@ function notauthorized($msg = "غير مصرح")
 function user()
 {
     return Auth::user();
+}
+
+
+
+
+function checkAndUpdateInvoiceStatus($id, $invoiceDate, $status)
+{
+    // تحديد تاريخ اليوم وتحديد تاريخ قبل أسبوعين
+    $today = Carbon::now();
+    $twoWeeksAgo = $today->copy()->subWeeks(2);
+
+    // تحويل تاريخ الفاتورة إلى كائن Carbon
+    $invoiceDate = Carbon::parse($invoiceDate);
+
+    // التحقق مما إذا كان قد مرت أسبوعين
+    if ($invoiceDate->lessThanOrEqualTo($twoWeeksAgo)) {
+        // التحقق من أن الحالة الحالية للفاتورة هي 0
+        if ($status == 0) {
+            // تحديث حالة الفاتورة إلى 1
+            Transaction::update($id, [
+                "status" => 1,
+                "created_at" => $invoiceDate
+            ]);
+            return false; // تم تحديث حالة الفاتورة
+        }
+        return false;
+    }
+
+    return true; // لم يتم تحديث حالة الفاتورة
 }

@@ -4,15 +4,17 @@ namespace App\Controllers;
 
 use App\Core\Request;
 use App\Models\Invoice;
+use App\Models\Transaction;
 use App\Models\User;
 use App\QueryBuilder;
+use Carbon\Carbon;
 
 class InvoiceController extends Controller
 {
 
     public function __construct()
     {
-        $this->middleware("auth");
+        $this->middleware("auth")->except("create");
     }
 
     public function index()
@@ -46,6 +48,7 @@ class InvoiceController extends Controller
             "status" => 0,
         ]);
 
+
         return view("invoice/sent", [
             "invoice" => $invoice
         ]);
@@ -60,8 +63,20 @@ class InvoiceController extends Controller
 
     public function completed()
     {
-        Invoice::update(Request::get("id"), [
+        $id = Request::get("id");
+        $invoice = Invoice::find(Request::get("id"));
+        Invoice::update($id, [
             "status" => 1
+        ]);
+
+        Transaction::create([
+            "seller_id" => $invoice->seller()->id,
+            "buyer_id" => user()->id,
+            "invoice_number" => $invoice->invoice_number,
+            "amount" => $invoice->product_price,
+            "status" => 0,
+            "bill_id" => $invoice->id,
+            "created_at" => Carbon::now()
         ]);
 
 

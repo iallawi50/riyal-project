@@ -15,12 +15,12 @@
                     <a href="<?= home() ?>/store/create" class="col-5 mx-auto btn btn-custom">أضف بيانات المتجر</a>
 
                 <?php endif ?>
-                <a href="/orders" class="col-5 mx-auto  btn btn-custom">الطلبات</a>
+                <a href="./store/orders" class="col-5 mx-auto  btn btn-custom">الفواتير</a>
 
             <?php else : ?>
 
-                <a href="#" class="col-5 mx-auto btn btn-custom">فواتيري</a>
-                <a href="#" class="col-5 mx-auto  btn btn-custom">معاملاتي</a>
+                <a href="./invoices" class="col-5 mx-auto btn btn-custom">فواتيري</a>
+                <a href="./orders" class="col-5 mx-auto  btn btn-custom">طلباتي</a>
             <?php endif ?>
         <?php else : ?>
 

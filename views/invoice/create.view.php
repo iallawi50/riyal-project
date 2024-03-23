@@ -116,7 +116,7 @@
                         <td><input type="number" name="price" placeholder="السعر" class="product-price"></td>
                     </tr>
                 </table>
-                <p>اجمالي المبلغ: <span id="total-amount">0.00</span></p>
+                <p>اجمالي المبلغ: <span id="total-amount">0.00</span> ريال</p>
                 <p>الدفع عن طريق "ريال"</p>
             </div>
             <div class="payment-section">
