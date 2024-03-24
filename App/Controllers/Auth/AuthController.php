@@ -53,7 +53,7 @@ class AuthController extends Controller
 
         if (empty($password)) {
             $data["errors"]["password"] = 'حقل كلمة المرور فارغ';
-        } else if (strlen($password) < 8) {
+        } else if (strlen($password) <= 8) {
             $data["errors"]["password"] = 'كلمة المرور قصيرة , يجب ان تكون 8 او اطول';
         } else if ($password != $confirmpassword) {
             $data["errors"]["password"] = 'كلمة المرور وتأكيد كلمة المرور غير متطابقين';

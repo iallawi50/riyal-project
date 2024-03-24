@@ -99,6 +99,8 @@
                 اسم المتجر
                 <select type="text" class="store" name="store">
                     <?php foreach ($stores as $store) : ?>
+                        <?php if (!$store->store()[0]) continue ?>
+
 
                         <option value="<?= $store->id ?>"><?= $store->store()[0]->name ?></option>
 

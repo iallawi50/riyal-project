@@ -5,7 +5,7 @@ use App\Middleware\Auth;
 use App\Models\Transaction;
 use Carbon\Carbon;
 
-function app_name($default = "Marten")
+function app_name($default = "riyal")
 {
     return App::$entries["config"]["app"]["name"] ?? $default;
 }
