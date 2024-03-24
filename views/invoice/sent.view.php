@@ -26,15 +26,15 @@ use App\Core\Request;
 
     <div>
         <h1>تم ارسال الفاتورة</h1>
-        <h3>رقم الطلب : <?= $invoice ?></h3>
+        <h3>رقم الفاتورة : <?= $invoice ?></h3>
     </div>
 
 
     <script>
         setTimeout(() => {
-        window.location.href = "../invoices"
+            window.location.href = "../invoices"
         }, 3000);
-</script>
+    </script>
 </body>
 
 </html>
