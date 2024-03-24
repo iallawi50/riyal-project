@@ -24,7 +24,7 @@ component("header") ?>
 
                 <tr>
                     <th scope="row"><?= $invoice->invoice_number ?></th>
-                    <td><a href="<?= isset($invoice->seller()->store()[0]->link)  ? "https://" : "" ?><?= $invoice->seller()->store()[0]->link  ?? "" ?>"><?= $invoice->seller()->store()[0]->name ?? "غير معروف" ?></a></td>
+                    <td><a href="<?= $invoice->seller()->store()[0]->link?>"><?= $invoice->seller()->store()[0]->name ?? "غير معروف" ?></a></td>
                     <td><?= Carbon::parse($invoice->created_at)->format("Y-m-d") ?></td>
                     <td><?= $invoice->product_price ?></td>
                     <td><?php

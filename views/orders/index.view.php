@@ -33,7 +33,7 @@ component("header") ?>
                 ?>
                 <tr>
                     <th scope="row"><?= $order->invoice_number ?></th>
-                    <td><a href="<?= isset($order->seller()->store()[0]->link)  ? "https://" : "" ?><?= $order->seller()->store()[0]->link  ?? "" ?>"><?= $order->seller()->store()[0]->name ?? "غير معروف" ?></a></td>
+                    <td><a target="_blank" href="<?= $order->seller()->store()[0]->link  ?? "" ?>"><?= $order->seller()->store()[0]->name ?? "غير معروف" ?></a></td>
                     <td><?= Carbon::parse($order->created_at)->format("Y-m-d") ?></td>
                     <td><?= $order->amount ?></td>
                     <td><?php

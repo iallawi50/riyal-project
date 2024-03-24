@@ -14,7 +14,7 @@
         </div>
         <div class="mb-3">
             <label for="link" class="form-label">رابط المتجر</label>
-            <input name="link" id=link class="form-control" />
+            <input name="link" id=link type="url" class="form-control" />
             <p class="text-danger"><?= $errors["link"] ?? '' ?></p>
         </div>
 
